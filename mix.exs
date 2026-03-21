@@ -6,6 +6,7 @@ defmodule AshPanel.MixProject do
 
   def project do
     [
+      usage_rules: usage_rules(),
       app: :ash_panel,
       version: @version,
       elixir: "~> 1.17",
@@ -30,6 +31,7 @@ defmodule AshPanel.MixProject do
 
   defp deps do
     [
+      {:usage_rules, "~> 1.0", only: [:dev]},
       # Ash Framework
       {:ash, "~> 3.0"},
       {:spark, "~> 2.0"},
@@ -46,6 +48,7 @@ defmodule AshPanel.MixProject do
       # Development & Testing
       {:ex_doc, "~> 0.31", only: :dev, runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:handgemacht_credo, path: "../handgemacht_credo", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:ash_scenario, "~> 0.6", only: :test}
     ]
@@ -131,6 +134,14 @@ defmodule AshPanel.MixProject do
         Introspection: [
           AshPanel.Introspection
         ]
+      ]
+    ]
+  end
+
+  defp usage_rules do
+    [
+      skills: [
+        package_skills: :all
       ]
     ]
   end
